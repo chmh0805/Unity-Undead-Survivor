@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 /*
     MonoBehaviour: A class that has the things you need to configure your game logic.
@@ -18,11 +19,9 @@ public class Player : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnMove(InputValue inputValue)
     {
-        inputVec.x = Input.GetAxisRaw("Horizontal");
-        inputVec.y = Input.GetAxisRaw("Vertical");
+        inputVec = inputValue.Get<Vector2>();
     }
 
     void FixedUpdate()
@@ -34,7 +33,7 @@ public class Player : MonoBehaviour
         // rigid.velocity = inputVec;
 
         // 3. Move Location
-        Vector2 nextVec = inputVec.normalized * speed * Time.fixedDeltaTime;
+        Vector2 nextVec = inputVec * speed * Time.fixedDeltaTime;
         rigid.MovePosition(rigid.position + nextVec);
     }
 }
