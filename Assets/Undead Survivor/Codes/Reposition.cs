@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Reposition : MonoBehaviour
@@ -33,7 +31,7 @@ public class Reposition : MonoBehaviour
                 {
                     transform.Translate(Vector3.right * dirX * 40);
                 }
-                else if (diffY > diffX)
+                else if (diffX < diffY)
                 {
                     transform.Translate(Vector3.up * dirY * 40);
                 }
